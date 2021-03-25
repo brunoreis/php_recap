@@ -1,6 +1,20 @@
 <?php declare(strict_types=1);
 use PHPUnit\Framework\TestCase;
 
+class ClassToCast
+{
+    private $var1private;
+    protected $var2protected;
+    public $var3public;
+    public $var4public;
+    public function __construct()
+    {
+        $this->var4public = 55;
+        $this->var1private = 'secret';
+    }
+}
+
+
 final class ArraysTest extends TestCase
 {
   public function testCreateWithArrayConstruct(): void {
@@ -61,4 +75,20 @@ final class ArraysTest extends TestCase
     }
     $this->assertEquals($ar,['name' => 'DUDE', 'size' => 'TALL']);
   }
+
+  // public function testCastAnObjectIntoAnArray(): void {
+  //   $object = new ClassToCast();
+  //   $converted = (array)$object;
+
+
+  //   $this->assertEquals(
+  //     array(
+  //       "ClassToCastvar1private"=>NULL, // this does not work
+  //       "*var2protected"=>NULL,
+  //       "var3public"=>NULL,
+  //       "var4public"=>55
+  //     ),
+  //     $converted // this fails showing "Binary String" for the private and protected props
+  //   );
+  // }
 }
